@@ -179,21 +179,24 @@ SECURE_BROWSER_XSS_FILTER = True
 
 X_FRAME_OPTIONS = 'DENY'
 
-# SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+if not settings.DEBUG:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
 
-# CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
 
-# SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=60, cast=int) #60
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
 
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=60, cast=int) #60
 
-# SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=True, cast=bool)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
 
-# SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=True, cast=bool)
 
-# SECURE_REFERRER_POLICY=config('REFERRER_POLICY', default='same-origin')
+    SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
+
+    SECURE_REFERRER_POLICY=config('REFERRER_POLICY', default='same-origin')
     
 
 # Password Hashers
@@ -265,6 +268,14 @@ MANAGERS = ADMINS
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
+
+DEFAULT_RENDERER_CLASSES = (
+    'rest_framework.renderers.JSONRenderer',
+)
+
+if DEBUG:
+    DEFAULT_RENDERER_CLASSES = DEFAULT_RENDERER_CLASSES + ('rest_framework.renderers.BrowsableAPIRenderer',)
+    
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
@@ -273,9 +284,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         #"rest_framework.permissions.IsAuthenticated",
     ],
-    # "DEFAULT_RENDERER_CLASSES": [
-    #    "rest_framework.renderers.JSONRenderer",
-    # ],
+    "DEFAULT_RENDERER_CLASSES": DEFAULT_RENDERER_CLASSES,
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 
@@ -289,12 +299,16 @@ REST_FRAMEWORK = {
 # Django-cors-header
 # ------------------------------------------------------------------------------
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:3000',
     'http://127.0.0.1:8000',
-    'https://nurtrisx.herokuapp.com'
+    'https://nurtsrx.herokuapp.com'
+)
+
+CORS_EXPOSE_HEADERS = (
+    'Access-Control-Allow-Origin: *',
 )
 
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000','http://127.0.0.1:8000',]
