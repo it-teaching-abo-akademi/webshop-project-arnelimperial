@@ -1,0 +1,133 @@
+{% load static i18n %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <title>{% block title %}Nurtrsx{% endblock title %}</title>
+    <meta
+      name="description"
+      content="A diverse range of dependable microbiology solutions for pathogen detection and identification, to help keep food free of contaminants."
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/spacelab/bootstrap.min.css"
+      integrity="sha384-F1AY0h4TrtJ8OCUQYOzhcFzUTxSOxuaaJ4BeagvyQL8N9mE4hrXjdDsNx249NpEc"
+      crossorigin="anonymous"
+    />
+    <link rel="canonical" href="https://nurtrisx.herokuapp.com/" />
+    <link rel="icon" href="{% static 'favicon.ico' %}" />
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    <link rel="apple-touch-icon" href="{% static 'logo192.png' %}" />
+    <!-- <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+    <meta name="theme-color" content="#000000" />
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <div class="pt-3 py-1 header--background">
+      <div class="container">
+        <header class="header--container">
+          <div>
+            <a class="text-white logo" href="/" style="text-decoration: none"
+              ><img src="/static/media/crown.d262c496.svg" alt=""
+            /></a>
+          </div>
+          <div class="header--search mt-2">
+            <form>
+              <div class="input-group input-group-md">
+                <input
+                  type="text"
+                  class="form-control"
+                  style="border-radius: 0.8em"
+                /><span
+                  aria-hidden="true"
+                  class="fa fa-search search--btn position-absolute pl-1"
+                ></span>
+              </div>
+            </form>
+          </div>
+          <div>
+            <a
+              class="pl-2 secondary--text"
+              href="/"
+              style="text-decoration: none; font-size: 2vw"
+              >ArnelAdmin</a
+            >
+            <ul class="nav header--nav__ul">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link secondary--text header--nav" href="/"
+                  >Change Password</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link secondary--text header--nav" href="/"
+                  >My Item</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link secondary--text header--nav" href="/logout"
+                  >Logout</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link secondary--text header--nav" href="/">
+                  <span
+                    aria-hidden="true"
+                    class="fa fa-shopping-basket basket"
+                  ></span>
+                </a>
+              </li>
+              {% else %}
+              <li class="nav-item ml-1 pl-1 pb-3">
+                <a class="nav-link secondary--text header--nav" href="/signup">
+                  SignUp
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link secondary--text header--nav" href="/login">
+                  SignIn
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </header>
+      </div>
+    </div>
+    <div class="py-1 mb-2 bg-dark card-4 border-top border-bottom">
+    <nav class="nav nav-justified"><a class="nav-item nav-link active secondary--text" href="/">Home</a><a class="nav-item nav-link secondary--text" href="/">Link</a><a class="nav-item nav-link secondary--text" href="/">Link</a><a class="nav-item nav-link secondary--text" href="/hats">Disabled</a></nav>
+</div>
+
+    {% comment %}
+    <div id="root"></div>
+    {% endcomment %} {% block content %} {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+  </body>
+</html>

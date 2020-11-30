@@ -1,0 +1,13 @@
+/* .parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 8px;
+  grid-row-gap: 0px;
+}
+
+@media only screen and (max-width: 799px) {
+  #display__items {
+    display: block;
+  }
+} */
