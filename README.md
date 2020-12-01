@@ -3,7 +3,7 @@
 [![frontend-reactjs](https://img.shields.io/badge/Frontend-Javascript/React-blue)](https://reactjs.org)
 [![License: Unlicense](https://img.shields.io/badge/License-Unlicense-9cf.svg)](http://unlicense.org/)
 
-E-commerce web application project coded in Python(Django) for creating API([Django Rest Framework](https://www.django-rest-framework.org)) and for the backend  and Javascript(React) on the client side. Assignment submitted in partial fulfillment of the requirements for the online course in  IT00CD40 Web Technologies, Åbo Akademi University.
+[E-commerce web application project](https://nurtsrx.herokuapp.com/) coded in Python(Django) for creating API([Django Rest Framework](https://www.django-rest-framework.org)) and for the backend  and Javascript(React) on the client side as single page application. Assignment submitted in partial fulfillment of the requirements for the online course in  IT00CD40 Web Technologies, Åbo Akademi University. The project was deployed in Heroku platform.
 
 ---
 

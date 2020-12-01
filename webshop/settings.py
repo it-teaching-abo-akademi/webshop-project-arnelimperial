@@ -8,6 +8,8 @@ from decouple import config, Csv
 
 from django.conf import settings
 
+from corsheaders.defaults import default_headers
+
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -76,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -188,7 +191,7 @@ if not settings.DEBUG:
 
     CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
 
-    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=60, cast=int) #60
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=18408206, cast=int) #60
 
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
 
@@ -196,7 +199,9 @@ if not settings.DEBUG:
 
     SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
 
-    SECURE_REFERRER_POLICY=config('REFERRER_POLICY', default='same-origin')
+    SECURE_REFERRER_POLICY = config('REFERRER_POLICY', default='same-origin')
+
+    CORS_REPLACE_HTTPS_REFERER = True
     
 
 # Password Hashers
@@ -299,10 +304,17 @@ REST_FRAMEWORK = {
 # Django-cors-header
 # ------------------------------------------------------------------------------
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'https://nurtsrx.herokuapp.com',
+    'http://localhost',
+]
 CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'http://localhost:8000',
     'http://127.0.0.1:8000',
     'https://nurtsrx.herokuapp.com'
 )
@@ -311,7 +323,29 @@ CORS_EXPOSE_HEADERS = (
     'Access-Control-Allow-Origin: *',
 )
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000','http://127.0.0.1:8000', 'https://nurtsrx.herokuapp.com',]
+CORS_ALLOW_HEADERS = default_headers + (
+    'Access-Control-Allow-Origin',
+)
+
+CORS_PREFLIGHT_MAX_AGE = 86400
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:8000', 
+    'nurtsrx.herokuapp.com',
+]
+
+# CORS_ALLOW_HEADERS = [
+#     'accept',
+#     'accept-encoding',
+#     'authorization',
+#     'content-type',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-requested-with',
+# ]
 # Webpack-loader
 # ------------------------------------------------------------------------------
 
