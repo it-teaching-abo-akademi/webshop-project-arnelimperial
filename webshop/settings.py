@@ -324,7 +324,7 @@ REST_FRAMEWORK = {
 # Django-cors-header
 # ------------------------------------------------------------------------------
 
-CORS_ORIGIN_ALLOW_ALL = True # Uncomment during development
+# CORS_ORIGIN_ALLOW_ALL = True # Uncomment during development
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
