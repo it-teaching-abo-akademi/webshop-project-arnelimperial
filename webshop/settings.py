@@ -286,7 +286,7 @@ EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default="Nurtsrx WebShop")
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = config('ADMIN_URL')
+#ADMIN_URL = config('ADMIN_URL')
 
 ADMIN_URL_OTP = config('ADMIN_URL_OTP')
 
