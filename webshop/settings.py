@@ -61,10 +61,7 @@ LOCAL_APPS = [
     'merchandises.apps.MerchandisesConfig',
     'carts.apps.CartsConfig',
     'purchases.apps.PurchasesConfig',
-   
     'initial.apps.InitialConfig',
-
-
 ]
 
 
@@ -74,6 +71,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django_feature_policy.PermissionsPolicyMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
   
 ]
 
@@ -182,7 +181,18 @@ SECURE_BROWSER_XSS_FILTER = True
 
 X_FRAME_OPTIONS = 'DENY'
 
+CSP_DEFAULT_SRC = ("'self'", "*")
+# CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+# CSP_SCRIPT_SRC = ("'self'",)
+# CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
+# CSP_IMG_SRC = ("'self'",)
+# CSP_INCLUDE_NONCE_IN = ["script-src"]
+# CSP_OBJECT_SRC = ("'none'", )
+# CSP_BASE_URI = ("'none'", )
+# CSP_CONNECT_SRC = ("'none'", )
+
 if not settings.DEBUG:
+    
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
     SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
@@ -202,6 +212,16 @@ if not settings.DEBUG:
     SECURE_REFERRER_POLICY = config('REFERRER_POLICY', default='same-origin')
 
     CORS_REPLACE_HTTPS_REFERER = True
+
+    PERMISSIONS_POLICY = {
+        "geolocation": [],
+        "autoplay": [],
+        "microphone": [],
+        "camera": [],
+        "fullscreen": []
+    }
+
+
     
 
 # Password Hashers
@@ -304,7 +324,7 @@ REST_FRAMEWORK = {
 # Django-cors-header
 # ------------------------------------------------------------------------------
 
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True # Uncomment during development
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
