@@ -1,4 +1,4 @@
-# WebShop Web Application
+# Nurtsrx
 [![backend-python-django](https://img.shields.io/badge/Backend-Python/Django-green)](https://www.djangoproject.com)
 [![frontend-reactjs](https://img.shields.io/badge/Frontend-Javascript/React-blue)](https://reactjs.org)
 [![License: Unlicense](https://img.shields.io/badge/License-Unlicense-9cf.svg)](http://unlicense.org/)
