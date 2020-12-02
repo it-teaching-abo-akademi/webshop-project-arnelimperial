@@ -12,7 +12,7 @@ from users.admin import admin_log
 
 
 urlpatterns = [
-    # path(settings.ADMIN_URL, admin.site.urls),
+    path(settings.ADMIN_URL, admin.site.urls),
     path(settings.ADMIN_URL_OTP, admin_log.urls),
     path("accounts/", include("allauth.urls")),
     path("users/", include('users.urls', namespace='users')),
