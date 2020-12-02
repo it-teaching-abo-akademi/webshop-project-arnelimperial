@@ -80,7 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'csp.middleware.CSPMiddleware',
+    'csp.middleware.CSPMiddleware',
   
 ]
 
@@ -181,15 +181,15 @@ SECURE_BROWSER_XSS_FILTER = True
 
 X_FRAME_OPTIONS = 'DENY'
 
-#CSP_DEFAULT_SRC = ("'self'", "*")
-# CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
-# CSP_SCRIPT_SRC = ("'self'",)
-# CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
-# CSP_IMG_SRC = ("'self'",)
-# CSP_INCLUDE_NONCE_IN = ["script-src"]
-# CSP_OBJECT_SRC = ("'none'", )
-# CSP_BASE_URI = ("'none'", )
-# CSP_CONNECT_SRC = ("'none'", )
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+CSP_SCRIPT_SRC = ("'self'",)
+CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
+CSP_IMG_SRC = ("'self'","*")
+CSP_INCLUDE_NONCE_IN = ["script-src"]
+CSP_OBJECT_SRC = ("'none'", )
+CSP_BASE_URI = ("'self'", )
+CSP_CONNECT_SRC = ("'self'","*" )
 
 if not settings.DEBUG:
     
