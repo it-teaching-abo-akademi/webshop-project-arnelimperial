@@ -52,6 +52,8 @@ THIRD_PARTY_APPS = [
     'webpack_loader',
     'whitenoise.runserver_nostatic',
     'corsheaders',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
     # 'markdown_deux',
 ]
 
@@ -78,6 +80,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
@@ -283,7 +286,9 @@ EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default="Nurtsrx WebShop")
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = config('ADMIN_URL', default='admin/')
+# ADMIN_URL = config('ADMIN_URL')
+
+ADMIN_URL_OTP = config('ADMIN_URL_OTP')
 
 ADMINS = [("""Arnel Imperial""", config('ADMIN_EMAIL'))]
 

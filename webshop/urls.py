@@ -6,11 +6,14 @@ from django.conf.urls.static import static
 from django.http import HttpResponseRedirect
 from django.views import defaults as default_views
 from rest_framework.authtoken.views import obtain_auth_token
+from users.admin import admin_log
 
-#from .views import client_view
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path(settings.ADMIN_URL, admin.site.urls),
+    path(settings.ADMIN_URL_OTP, admin_log.urls),
     path("accounts/", include("allauth.urls")),
     path("users/", include('users.urls', namespace='users')),
     path("merchandises/", include('merchandises.urls', namespace='merchandises')),
