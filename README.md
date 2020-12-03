@@ -23,22 +23,36 @@ An E-commerce and CRUD web application project coded in __Python(Django)__ for c
 - _en_: Python virtual environment.
 
 ### User Authentication
-The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/) for authenticating users using API. Login, signup, change password, and logout are handled by this modile. Some configuration are set by [Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) in the backend. The default DRF authentication class used was `rest_framework.authentication.TokenAuthentication`.
+The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/) for authenticating users with API. Login, signup, change password, and logout are handled by this module. Some configuration are set by [Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) in the backend. The default DRF authentication class used was `rest_framework.authentication.TokenAuthentication`.
 
 ### Site architecture
 - _Landing Page_ https://nurtsrx.herokuapp.com/: Serve as the home page of the application and for   triggering the automatic DB population that generates six users and with three users already have ten items created available for sale. Re-population of users and items owned by users was initiated by using Django's *post_save [signals](https://docs.djangoproject.com/en/3.1/topics/signals/)* in the `users` app.
 
-- _Shop Page_ https://nurtsrx.herokuapp.com/shop: The page to view the available products available for sale that return ten items per page. Paginated using DRF's [rest_framework.pagination.PageNumberPagination](https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination) with `page_size = 10` and [react-js-pagination](https://www.npmjs.com/package/react-js-pagination) on the frontend. Authenticated and anonymous users can view all of the items for sales but only the login users can shop and can create _merchandise_ objects as item for sale. Login users can only select and buy `merchandises` that they don't owned/created otherwise it will raise `ValidationError` if that event will happen, but it unlikely to happened because the `add to cart` button was disabled for the current user's item.
+- _Shop Page_ https://nurtsrx.herokuapp.com/shop: The page to view the available products available for sale that return ten items per page. Paginated using DRF's [rest_framework.pagination.PageNumberPagination](https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination) with `page_size = 10` and [react-js-pagination](https://www.npmjs.com/package/react-js-pagination) on the frontend. Authenticated and anonymous users can view all of the items for sales but only the login users can shop and can create _merchandise_ objects as item for sale. Login users can only select and buy `merchandises` that they don't owned/created otherwise it will raise `ValidationError` if that event will happen, but it unlikely to happened because the `add to cart` button was disabled for the current user's item. Items are ordered by `created_date`field as `date added`.
 
 - _Login Page_ https://nurtsrx.herokuapp.com/login: User must provide email and password to be submitted in the form.
 
-- _Signup Page_ https://nurtsrx.herokuapp.com/signup: To register a user, username, email, and password with confirmation must be fullfilled.
+- _Signup Page_ https://nurtsrx.herokuapp.com/signup: To register a user, username, email, and password with confirmation must be fullfilled. Username and email are unique model field.
 
-- _Account Page_ https://nurtsrx.herokuapp.com/account: For editing user's password.
+- _Account Page_ https://nurtsrx.herokuapp.com/account: For editing user's password, `request.user`must provide the current password and new password entry with confirmation. */account* is a `protected route`.
 
-- _MyItem Page_ https://nurtsrx.herokuapp.com/myitems: Page where authenticated users can view their own items, sold items and bought item. The add item form and edit item form was also found in this page.
+- _MyItem Page_ https://nurtsrx.herokuapp.com/myitems: Page where authenticated users can view their own items, sold items and bought item. The add item form and edit item form was also found in this page. Only the user that created the `merchandise object` can modify the required field by patch method. */myitems* is a `protected route`.
 
-- _Logout Page_ https://nurtsrx.herokuapp.com/logout: Logout page.
+- _Logout Page_ https://nurtsrx.herokuapp.com/logout: Logout page. Logout page has `confirmation` and must be confirmed by the authenticated user to be successfully sign out from the system. */logout* is a `protected route`.
+
+- _SingleItem Page_ https://nurtsrx.herokuapp.com/{params.slug}: Pages for every items in the store that redirects when user searches for `merchandise title` as single object.   
+
+- _404 Page_ : Catch all unavailable routes.
+
+### Endpoints
+API root endpoint: __https://nurtsrx.herokuapp.com/api/__
+#### Authentication
+_https://nurtsrx.herokuapp.com/api/rest-auth/login/_
+environment variable: REACT_APP_ENDPOINT_AUTH_LOGIN
+method: post
+response: token
+
+
 
 ### Search
 Anonymous and login users can search the items by the item's title and by implementing DRF's [search filters](https://www.django-rest-framework.org/api-guide/filtering/#searchfilter) on the backend.
