@@ -83,7 +83,7 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'csp.middleware.CSPMiddleware',
+    # 'csp.middleware.CSPMiddleware',
   
 ]
 
@@ -328,8 +328,11 @@ REST_FRAMEWORK = {
 
 # Django-cors-header
 # ------------------------------------------------------------------------------
-
-# CORS_ORIGIN_ALLOW_ALL = True # Uncomment during development
+if not settings.DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = False
+else:
+    CORS_ORIGIN_ALLOW_ALL = True
+    
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [

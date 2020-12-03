@@ -2,7 +2,6 @@ import React from "react";
 import Directory from "../../partials/directory/index";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./style.scss";
 import "./style.css";
 
 import HeaderHome from "../../partials/header/index.home";

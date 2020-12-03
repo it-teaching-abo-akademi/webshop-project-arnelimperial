@@ -44,15 +44,9 @@ The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/late
 
 - _404 Page_ : Catch all unavailable routes.
 
-### Endpoints
-API root endpoint: __https://nurtsrx.herokuapp.com/api/__
-#### Authentication
-_https://nurtsrx.herokuapp.com/api/rest-auth/login/_
-environment variable: REACT_APP_ENDPOINT_AUTH_LOGIN
-method: post
-response: token
-
-
+### API Endpoints
+BASE URI: __https://nurtsrx.herokuapp.com/api/__
+Rough draft of API documentation can be found on this [link](https://nurtsrx.herokuapp.com/api.html)
 
 ### Search
 Anonymous and login users can search the items by the item's title and by implementing DRF's [search filters](https://www.django-rest-framework.org/api-guide/filtering/#searchfilter) on the backend.

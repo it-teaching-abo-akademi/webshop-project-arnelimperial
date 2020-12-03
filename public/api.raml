@@ -1,0 +1,105 @@
+#%RAML 1.0
+---
+title: Nurtsrx
+description: Draft of Nurtsrx API endpoint definition
+version: v1
+baseUri: https://nurtsrx.herokuapp.com/api
+protocols: [ HTTPS ]
+mediaType: [ application/json ]
+
+/rest-auth/login/:
+  description: |
+    Route for users login to the system. Environment variable: REACT_APP_ENDPOINT_AUTH_LOGIN
+  post: 
+    description: |
+      Retrieve user's login token key
+    body:
+      application/json:
+       properties:
+         email:
+           required: true
+         password:
+           required: true
+       example: |
+        {
+            "email": "testuser0@shop.aa",
+            "password": "pass0"
+        }
+    responses:
+      200:
+        description: OK
+        body:
+          application/json:
+            example: |
+              {
+                "key": "zx0e2eeb00d740d4582682d4b690f0823dc9ac28"
+              }
+      400:
+        description: Bad Request
+
+/rest-auth/registration/:
+  description: |
+    Manages user's registration. Environment variable: REACT_APP_ENDPOINT_SIGNUP
+  post: 
+    description: |
+      Retrieve user's login token key
+    body:
+      application/json:
+       properties:
+         username:
+           description: Must be unique
+         email:
+           description: Must be unique
+         password1:
+         password2:
+           description: Repeat password
+       example: |
+        {
+            "username": "testuser0",
+            "email": "testuser0@shop.aa",
+            "password1": "pass0"
+            "password2": "pass0"
+        }
+    responses:
+      201:
+        description: Created. New user created
+      400:
+        description: Bad Request. Error due to missing required field or adding username/email
+                     already on the DB. Username and email must be unique.
+
+/rest-auth/password/change/:
+   description: |
+    Edit user's password. Environment variable: REACT_APP_ENDPOINT_PASSWORD_RESET
+   post: 
+     description: |
+       Change password
+    body:
+      application/json:
+       properties:
+         old_password:
+           description: current password
+         new_password1:
+           description: elected password
+         new_password1:
+           description: elected password confirmation
+    responses:
+      201:
+        description: Created. 
+      400:
+        description: Bad Request.
+
+/rest-auth/logout/:
+   description: |
+    Logout route. Environment variable: REACT_APP_ENDPOINT_AUTH_LOGOUT
+   post: 
+     description: |
+       Logout by user's token
+    body:
+      application/json
+    responses:
+      200:
+        description: OK. 
+      400:
+        description: Bad Request.
+
+
