@@ -23,8 +23,9 @@ urlpatterns = [
 
 
     path('favicon.ico', lambda x: HttpResponseRedirect(settings.STATIC_URL + 'favicon.ico')),
+    path('api.html', lambda x: HttpResponseRedirect(settings.STATIC_URL + 'api.html')),
+    path('robots.txt', lambda x: HttpResponseRedirect(settings.STATIC_URL + 'robots.txt')),
      
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS

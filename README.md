@@ -46,7 +46,9 @@ The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/late
 
 ### API Endpoints
 BASE URI: __https://nurtsrx.herokuapp.com/api/__
-Rough draft of API documentation can be found on this [link](https://nurtsrx.herokuapp.com/api.html)
+Rough draft of API documentation can be found in **https://nurtsrx.herokuapp.com/static/api.html**.
+API Documentation generated using [raml2html](https://github.com/raml2html/raml2html).
+
 
 ### Search
 Anonymous and login users can search the items by the item's title and by implementing DRF's [search filters](https://www.django-rest-framework.org/api-guide/filtering/#searchfilter) on the backend.
