@@ -45,7 +45,7 @@ The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/late
 - _404 Page_ : Catch all unavailable routes.
 
 ### API Endpoints
-BASE URI: __https://nurtsrx.herokuapp.com/api/__
+BASE URI: __https://nurtsrx.herokuapp.com/api/__\
 Rough draft of API documentation can be found in **https://nurtsrx.herokuapp.com/static/api.html**.
 API Documentation generated using [raml2html](https://github.com/raml2html/raml2html).
 

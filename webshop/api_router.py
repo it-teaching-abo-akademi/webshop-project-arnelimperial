@@ -30,9 +30,6 @@ router.register(r"purchases", PurchaseViewset, basename='purchases')
 router.register(r"purchases-buyer", BuyerPurchasesViewSet, basename='purchases-buyer')
 router.register(r"purchases-sellers", ItemBySellersViewSet, basename='purchases-seller')
 
-
-
-
 router.register("initial", InitialViewset, basename='initials')
 
 

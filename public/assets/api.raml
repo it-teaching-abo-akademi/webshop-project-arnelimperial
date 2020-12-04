@@ -7,6 +7,20 @@ baseUri: https://nurtsrx.herokuapp.com/api
 protocols: [ HTTPS ]
 mediaType: [ application/json ]
 
+/users/:
+  description: |
+    List of all users
+  get:
+    description: |
+      Retrieve the list of users.
+    body:
+      application/json:
+        properties:
+          
+  post:
+    
+      
+
 /rest-auth/login/:
   description: |
     Route for users login to the system. Environment variable: REACT_APP_ENDPOINT_AUTH_LOGIN
@@ -47,12 +61,12 @@ mediaType: [ application/json ]
       application/json:
        properties:
          username:
-           description: Must be unique
+           description: Must be unique.
          email:
-           description: Must be unique
+           description: Must be unique.
          password1:
          password2:
-           description: Repeat password
+           description: Repeat password.
        example: |
         {
             "username": "testuser0",
