@@ -23,7 +23,7 @@ User = get_user_model()
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    authentication_classes = [TokenAuthentication,SessionAuthentication,BasicAuthentication,]
+    authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAdminUser,IsAuthenticated,]
     lookup_field = "username"
 
@@ -31,7 +31,7 @@ class UserViewSet(ModelViewSet):
 class UserCountView(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.filter(is_staff=False)
-    authentication_classes = [TokenAuthentication,SessionAuthentication,BasicAuthentication,]
+    authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAdminUser,IsAuthenticated,]
 
     def list(self, request, *args, **kwargs):
