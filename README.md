@@ -49,10 +49,20 @@ BASE URI: __https://nurtsrx.herokuapp.com/api/__<br />
 Rough draft of API documentation can be found in **https://nurtsrx.herokuapp.com/static/api.html**.
 API Documentation generated using [raml2html](https://github.com/raml2html/raml2html).
 
-**/api/users/** 
-**/api/merchandises/** (POST)<br />
+*/api/users/* (GET)<br />
+Retrieve all users<br />
+Environment variable: REACT_APP_ENDPOINT_AUTH_USERS<br />
+Permission: Admin user
+
+
+*/api/merchandises/?search=* (GET)<br />
+Search endpoint by title<br />
+Environment variable: REACT_APP_ENDPOINT_ITEM_SEARCH<br />
+
+
+*/api/merchandises/* (POST)<br />
 Create merchandise object.<br />
-Environment variable: REACT_APP_ENDPOINT_ITEM_DISPLAY
+Environment variable: REACT_APP_ENDPOINT_ITEM_DISPLAY<br /> 
 Permission: Authenticated user
 - title(required)
 - description(required)
@@ -69,16 +79,34 @@ Permission: Authenticated user
 - merchant_email
 
 
-**/api/merchandise-counts/** (GET)<br />
+*/api/merchandise-counts/* (GET)<br />
 Count all merchandise objects.<br />
 Environment variable: REACT_APP_ENDPOINT_PRODUCTS_COUNT<br />
 Permission: Admin user
 
 
-**/api/merchandise-owned/** (GET)<br />
+*/api/merchandise-owned/* (GET)<br />
 Merchandise objects created by user. Returns pk, title, price, description, price_dec, slug, product_image, created_date, updated_date, merchant.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_ITEMS<br />
 Permission: Authenticated user
+
+
+*/api/carts/* (POST)<br />
+Add merchandise object to cart
+Environment variable: REACT_APP_ENDPOINT_CART<br /> 
+Permission: Authenticated user<br />
+- item(required)
+- id(auto-field)
+- item_name
+- customer
+- customer_email
+- merchant
+- item_price
+- item_price_dec
+- item_merchant_email
+- on_stock
+- created
+
 
 
 

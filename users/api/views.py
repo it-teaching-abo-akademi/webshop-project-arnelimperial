@@ -23,7 +23,7 @@ User = get_user_model()
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    authentication_classes = [TokenAuthentication,]
+    authentication_classes = [TokenAuthentication,SessionAuthentication]
     permission_classes = [IsAdminUser,IsAuthenticated,]
     lookup_field = "username"
 
