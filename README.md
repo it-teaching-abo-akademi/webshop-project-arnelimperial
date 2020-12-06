@@ -45,9 +45,41 @@ The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/late
 - _404 Page_ : Catch all unavailable routes.
 
 ### API Endpoints
-BASE URI: __https://nurtsrx.herokuapp.com/api/__\
+BASE URI: __https://nurtsrx.herokuapp.com/api/__<br />
 Rough draft of API documentation can be found in **https://nurtsrx.herokuapp.com/static/api.html**.
 API Documentation generated using [raml2html](https://github.com/raml2html/raml2html).
+
+**/api/users/** 
+**/api/merchandises/** (POST)<br />
+Create merchandise object.<br />
+Environment variable: REACT_APP_ENDPOINT_ITEM_DISPLAY
+Permission: Authenticated user
+- title(required)
+- description(required)
+- price(required)
+- id(auto-field)
+- product_image(image placelder for item added)
+- date_created(timestamp for new item added)
+- date_updated(timestamp for item edited)
+- price_dec(generated decimal value of price)
+- slug(lookup field generated from title)
+- url(merchandise url)
+- merchant(Vendor foreign key related field)
+- merchant_username
+- merchant_email
+
+
+**/api/merchandise-counts/** (GET)<br />
+Count all merchandise objects.<br />
+Environment variable: REACT_APP_ENDPOINT_PRODUCTS_COUNT<br />
+Permission: Admin user
+
+
+**/api/merchandise-owned/** (GET)<br />
+Merchandise objects created by user. Returns pk, title, price, description, price_dec, slug, product_image, created_date, updated_date, merchant.<br />
+Environment variable: REACT_APP_ENDPOINT_USER_ITEMS<br />
+Permission: Authenticated user
+
 
 
 ### Search

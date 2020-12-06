@@ -54,8 +54,8 @@ class MerchandiseViewset(ModelViewSet):
 class MerchandiseCountView(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = MerchandiseSerializer
     queryset = Merchandise.objects.all()
-    authentication_classes = [TokenAuthentication,SessionAuthentication,BasicAuthentication,]
-    permission_classes = [IsAdminUser]
+    authentication_classes = [TokenAuthentication,SessionAuthentication,]
+    permission_classes = [IsAdminUser,IsAuthenticated,]
     # lookup_field = "username"
 
     def list(self, request, *args, **kwargs):
