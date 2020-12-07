@@ -48,7 +48,9 @@ BASE URI: __https://nurtsrx.herokuapp.com/api/__<br />
 */api/users/* (GET, POST, PATCH, PUT, DELETE)<br />
 Retrieve all users. Customizing Django's default `User` model using `AbstractUser`.<br />
 Environment variable: REACT_APP_ENDPOINT_AUTH_USERS<br />
-Permission: Admin user
+Permission: Admin user<br />
+Django app name: *users*
+
 - username(required)
 - email(required)
 - password(required)
@@ -67,12 +69,15 @@ Permission: Admin user
 */api/merchandises/?search=* (GET)<br />
 Search endpoint by title.<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_SEARCH<br />
+Permission: Read only<br />
+Django app name: *merchandises*
 
 
 */api/merchandises/* (POST, PATCH)<br />
 Create and edit merchandise object.<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_DISPLAY<br /> 
-Permission: Authenticated user
+Permission: Authenticated user<br />
+Django app name: *merchandises*
 - title(required)
 - description(required)
 - price(required)
@@ -91,19 +96,22 @@ Permission: Authenticated user
 */api/merchandise-counts/* (GET)<br />
 Count all merchandise objects.<br />
 Environment variable: REACT_APP_ENDPOINT_PRODUCTS_COUNT<br />
-Permission: Admin user
+Permission: Admin user<br />
+Django app name: *merchandises*
 
 
 */api/merchandise-owned/* (GET)<br />
 Merchandise objects created by user. Returns pk, title, price, description, price_dec, slug, product_image, created_date, updated_date, merchant.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_ITEMS<br />
-Permission: Authenticated user
-
+Permission: Authenticated user<br />
+Django app name: *merchandises*
 
 */api/carts/* (POST)<br />
 Add merchandise object to cart
 Environment variable: REACT_APP_ENDPOINT_CART<br /> 
 Permission: Authenticated user<br />
+Django app name: *carts*
+
 - item(required)
 - id(auto-field)
 - item_name
@@ -121,18 +129,22 @@ Permission: Authenticated user<br />
 Cart object created by user. Return id, item_name, customer, customer_email, merchant, item_price, item_price_dec, item_merchant_email, on_stock, created, item.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_CART<br /> 
 Permission: Authenticated user<br />
+Django app name: *carts*
 
 
 */api/users-cart/* (DELETE)<br />
 Delete all cart object by user.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_CART_DELETE_ALL<br /> 
 Permission: Authenticated user<br />
+Django app name: *carts*
 
 
 */api/purchases/* (POST)<br />
 Delete all cart object by user.<br />
 Environment variable: REACT_APP_ENDPOINT_PURCHASE<br /> 
 Permission: Authenticated user<br />
+Django app name: *purchases*
+
 - purchases(Foreign key Cart model required field)
 - purchased_item_id
 - purchased_item_name
@@ -150,18 +162,21 @@ Permission: Authenticated user<br />
 Retrieve user's purchases as buyer.<br />
 Environment variable: REACT_APP_ENDPOINT_BUYER<br /> 
 Permission: Authenticated user<br />
+Django app name: *purchases*
 
 
 */api/purchases-sellers/* (GET)<br />
 Retrieve user's purchases objects as seller.<br />
 Environment variable: REACT_APP_ENDPOINT_SELLERS<br /> 
 Permission: Authenticated user<br />
+Django app name: *purchases*
 
 
 */api/initial/* (POST)<br />
 Create default users and merchandise.<br />
 Environment variable: REACT_APP_ENDPOINT_INITIAL<br /> 
 Permission: Admin user<br />
+Django app name: *initial*
 
 
 ### User Authentication
