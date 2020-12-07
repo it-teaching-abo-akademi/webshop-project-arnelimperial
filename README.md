@@ -22,8 +22,6 @@ An E-commerce and CRUD web application project coded in __Python(Django)__ for c
 - _build_: React build files.
 - _en_: Python virtual environment.
 
-### User Authentication
-The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/) for authenticating users with API. Login, signup, change password, and logout are handled by this module. Some configuration are set by [Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) in the backend. The default DRF authentication class used was `rest_framework.authentication.TokenAuthentication`.
 
 ### Site architecture
 - _Landing Page_ https://nurtsrx.herokuapp.com/: Serve as the home page of the application and for   triggering the automatic DB population that generates six users and with three users already have ten items created available for sale. Re-population of users and items owned by users was initiated by using Django's *post_save [signals](https://docs.djangoproject.com/en/3.1/topics/signals/)* in the `users` app.
@@ -60,8 +58,8 @@ Search endpoint by title<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_SEARCH<br />
 
 
-*/api/merchandises/* (POST)<br />
-Create merchandise object.<br />
+*/api/merchandises/* (POST, PATCH)<br />
+Create and edit merchandise object.<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_DISPLAY<br /> 
 Permission: Authenticated user
 - title(required)
@@ -108,10 +106,60 @@ Permission: Authenticated user<br />
 - created
 
 
+*/api/customers-cart/* (GET)<br />
+Cart object created by user. Return id, item_name, customer, customer_email, merchant, item_price, item_price_dec, item_merchant_email, on_stock, created, item.<br />
+Environment variable: REACT_APP_ENDPOINT_USER_CART<br /> 
+Permission: Authenticated user<br />
+
+
+*/api/users-cart/* (DELETE)<br />
+Delete all cart object by user.<br />
+Environment variable: REACT_APP_ENDPOINT_USER_CART_DELETE_ALL<br /> 
+Permission: Authenticated user<br />
+
+
+*/api/purchases/* (POST)<br />
+Delete all cart object by user.<br />
+Environment variable: REACT_APP_ENDPOINT_PURCHASE<br /> 
+Permission: Authenticated user<br />
+- purchases(Foreign key Cart model required field)
+- purchased_item_id
+- purchased_item_name
+- purchased_item_description
+- purchased_item_product_image
+- buyer
+- buyer_username
+- sellers
+- purchased_price_dec
+- on_stock
+- created
+
+
+*/api/purchases-buyer/* (GET)<br />
+Retrieve user's purchases as buyer.<br />
+Environment variable: REACT_APP_ENDPOINT_BUYER<br /> 
+Permission: Authenticated user<br />
+
+
+*/api/purchases-sellers/* (GET)<br />
+Retrieve user's purchases objects as seller.<br />
+Environment variable: REACT_APP_ENDPOINT_SELLERS<br /> 
+Permission: Authenticated user<br />
+
+
+*/api/initial/* (POST)<br />
+Create default users and merchandise.<br />
+Environment variable: REACT_APP_ENDPOINT_INITIAL<br /> 
+Permission: Admin user<br />
+
+
+### User Authentication
+The app uses  [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/) for authenticating users with API. Login, signup, change password, and logout are handled by this module. Some configuration are set by [Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) in the backend. The default DRF authentication class used was `rest_framework.authentication.TokenAuthentication`.
 
 
 ### Search
 Anonymous and login users can search the items by the item's title and by implementing DRF's [search filters](https://www.django-rest-framework.org/api-guide/filtering/#searchfilter) on the backend.
+
 
 ### Security
 _Content Security Policy_ and _Permissions Policy_ protection was added to boost the security features of the application. CSP was initiated by installing [django-csp](https://django-csp.readthedocs.io/en/latest/) and set directives such as `default-src`, `script-src`, `style-src`, `connect-src`and etc. with there respective configuration. Permission policy was implemented by [django-feature-policy](https://pypi.org/project/django-feature-policy/). Built-in security settings was carried out mostly on deployment as well as during development stage.
@@ -129,6 +177,7 @@ _Content Security Policy_ and _Permissions Policy_ protection was added to boost
 - X_FRAME_OPTIONS
 
 To secure the site admin interface, One-Time Password was implemented with [django-otp](https://django-otp-official.readthedocs.io/en/stable/) as well as updating the default admin url path.
+
 
 ### Styling
 The website was styled using Bootstrap, Bootswatch(Spacelab theme), Jquery, media queries and custom CSS.
