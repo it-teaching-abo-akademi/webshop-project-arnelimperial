@@ -23,7 +23,7 @@ An E-commerce and CRUD web application project coded in __Python(Django)__ for c
 - _en_: Python virtual environment.
 
 
-### Site architecture
+### Site architecture and Routing
 - _Landing Page_ https://nurtsrx.herokuapp.com/: Serve as the home page of the application and for   triggering the automatic DB population that generates six users and with three users already have ten items created available for sale. Re-population of users and items owned by users was initiated by using Django's *post_save [signals](https://docs.djangoproject.com/en/3.1/topics/signals/)* in the `users` app.
 
 - _Shop Page_ https://nurtsrx.herokuapp.com/shop: The page to view the available products available for sale that return ten items per page. Paginated using DRF's [rest_framework.pagination.PageNumberPagination](https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination) with `page_size = 10` and [react-js-pagination](https://www.npmjs.com/package/react-js-pagination) on the frontend. Authenticated and anonymous users can view all of the items for sales but only the login users can shop and can create _merchandise_ objects as item for sale. Login users can only select and buy `merchandises` that they don't owned/created otherwise it will raise `ValidationError` if that event will happen, but it unlikely to happened because the `add to cart` button was disabled for the current user's item. Items are ordered by `created_date`field as `date added`.
@@ -44,17 +44,28 @@ An E-commerce and CRUD web application project coded in __Python(Django)__ for c
 
 ### API Endpoints
 BASE URI: __https://nurtsrx.herokuapp.com/api/__<br />
-Rough draft of API documentation can be found in **https://nurtsrx.herokuapp.com/static/api.html**.
-API Documentation generated using [raml2html](https://github.com/raml2html/raml2html).
 
-*/api/users/* (GET)<br />
-Retrieve all users<br />
+*/api/users/* (GET, POST, PATCH, PUT, DELETE)<br />
+Retrieve all users. Customizing Django's default `User` model using `AbstractUser`.<br />
 Environment variable: REACT_APP_ENDPOINT_AUTH_USERS<br />
 Permission: Admin user
+- username(required)
+- email(required)
+- password(required)
+- name(non-mandatory profile Char field)
+- is_staff(default to False)
+- is_active(default to True)
+- is_superuser(default to False)
+- last_login(login timestamp)
+- date_joined(date registered timestamp)
+- groups(default to blank)
+- user_permissions(default to blank)
+- id(auto-field)
+
 
 
 */api/merchandises/?search=* (GET)<br />
-Search endpoint by title<br />
+Search endpoint by title.<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_SEARCH<br />
 
 
@@ -106,7 +117,7 @@ Permission: Authenticated user<br />
 - created
 
 
-*/api/customers-cart/* (GET)<br />
+*/api/customers-cart/* (GET, DELETE)<br />
 Cart object created by user. Return id, item_name, customer, customer_email, merchant, item_price, item_price_dec, item_merchant_email, on_stock, created, item.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_CART<br /> 
 Permission: Authenticated user<br />
@@ -162,21 +173,22 @@ Anonymous and login users can search the items by the item's title and by implem
 
 
 ### Security
-_Content Security Policy_ and _Permissions Policy_ protection was added to boost the security features of the application. CSP was initiated by installing [django-csp](https://django-csp.readthedocs.io/en/latest/) and set directives such as `default-src`, `script-src`, `style-src`, `connect-src`and etc. with there respective configuration. Permission policy was implemented by [django-feature-policy](https://pypi.org/project/django-feature-policy/). Built-in security settings was carried out mostly on deployment as well as during development stage.
+_Content Security Policy_ and _Permissions Policy_ protection was added to boost the security features of the application. CSP was initiated by installing [django-csp](https://django-csp.readthedocs.io/en/latest/) and set directives such as `default-src`, `script-src`, `style-src`, `connect-src`and etc. with there respective configuration. Permissions policy was implemented by [django-feature-policy](https://pypi.org/project/django-feature-policy/). Built-in security settings was carried out on deployment as well as during development stage.
 
-- SECURE_PROXY_SSL_HEADER
-- SECURE_SSL_REDIRECT
-- SECURE_HSTS_SECONDS
-- SECURE_HSTS_INCLUDE_SUBDOMAINS
-- SECURE_HSTS_PRELOAD
-- SECURE_CONTENT_TYPE_NOSNIFF
-- SECURE_REFERRER_POLICY
-- SESSION_COOKIE_SECURE
-- SESSION_COOKIE_HTTPONLY
-- SECURE_BROWSER_XSS_FILTER
-- X_FRAME_OPTIONS
+- [SECURE_PROXY_SSL_HEADER](https://docs.djangoproject.com/en/dev/ref/settings/#secure-proxy-ssl-header)
+- [SECURE_SSL_REDIRECT](https://docs.djangoproject.com/en/dev/ref/settings/#secure-ssl-redirect)
+- [SECURE_HSTS_SECONDS](https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds)
+- [SECURE_HSTS_INCLUDE_SUBDOMAINS](https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-include-subdomains)
+- [SECURE_HSTS_PRELOAD](https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-preload)
+- [SECURE_CONTENT_TYPE_NOSNIFF](https://docs.djangoproject.com/en/dev/ref/middleware/#x-content-type-options-nosniff)
+- [SECURE_REFERRER_POLICY](https://docs.djangoproject.com/en/3.1/ref/settings/#secure-referrer-policy)
+- [SESSION_COOKIE_SECURE](https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-secure)
+- [SESSION_COOKIE_HTTPONLY](https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly)
+- [CSRF_COOKIE_HTTPONLY](https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly)
+- [SECURE_BROWSER_XSS_FILTER](https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter)
+- [X_FRAME_OPTIONS](https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options)
 
-To secure the site admin interface, One-Time Password was implemented with [django-otp](https://django-otp-official.readthedocs.io/en/stable/) as well as updating the default admin url path.
+To secure the site admin interface, One-Time Password was implemented with [django-otp](https://django-otp-official.readthedocs.io/en/stable/) as well as updating the default admin url path. Web app scanned and graded A+ by [Mozilla Observatory](https://observatory.mozilla.org/) and [Security Headers](https://securityheaders.com/)
 
 
 ### Styling
