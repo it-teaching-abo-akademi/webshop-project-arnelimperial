@@ -2,7 +2,7 @@
 [![backend-python-django](https://img.shields.io/badge/Backend-Python/Django-green)](https://www.djangoproject.com)
 [![frontend-reactjs](https://img.shields.io/badge/Frontend-Javascript/React-blue)](https://reactjs.org)
 [![License: Unlicense](https://img.shields.io/badge/License-Unlicense-9cf.svg)](http://unlicense.org/)
-
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=nurtsrx&style=flat-square)
 An E-commerce and CRUD web application project coded in __Python(Django)__ for creating API([Django Rest Framework](https://www.django-rest-framework.org)) and for the backend  and __Javascript(React)__ on the client side as single page application. Assignment submitted in partial fulfillment of the requirements for the online course in  IT00CD40 Web Technologies, Åbo Akademi University. The [project](https://nurtsrx.herokuapp.com) was deployed in __Heroku__ platform.
 
 ---
