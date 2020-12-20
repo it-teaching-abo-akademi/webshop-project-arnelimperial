@@ -126,7 +126,6 @@ class Account extends React.Component {
                 encType="multipart/form-data"
                 className="my-5"
               >
-                {/* <CSRFToken /> */}
 
                 <div className="form-group font-weight-bold">
                   <label

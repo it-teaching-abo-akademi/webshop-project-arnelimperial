@@ -18,20 +18,11 @@ const SingleItem = lazy(() => import("./pages/singleItem/index"));
 const EditItem = lazy(() => import("./pages/editItem/index"));
 
 
-
-// samples
-const Hats = () => (
-  <div>
-    <h1>Hats Page</h1>
-  </div>
-);
-
 function App() {
   return (
     <>
       <Switch>
         <Route exact path="/" component={Home}></Route>
-        <Route path="/hats" component={Hats}></Route>
         <Route exact path="/signup" component={SignUp}></Route>
         <Route exact path="/login" component={Login}></Route>
         <Route path="/shop" component={Shop}></Route>

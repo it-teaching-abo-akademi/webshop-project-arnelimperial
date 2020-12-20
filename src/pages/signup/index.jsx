@@ -2,9 +2,7 @@ import React from "react";
 import axios from "axios";
 import Header from "../../partials/header/index";
 import { Redirect } from "react-router-dom";
-//import CSRFToken from "../../partials/csrf/csrf";
 import EmailRegex from "../../partials/validators/email";
-import { fromBase64 } from "js-base64";
 import PasswordMask from "react-password-mask";
 
 class SignUp extends React.Component {

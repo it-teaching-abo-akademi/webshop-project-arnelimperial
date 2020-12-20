@@ -5,11 +5,7 @@ import axios from "axios";
 //import FontAwesome from "react-fontawesome";
 //import faStyles from "font-awesome/css/font-awesome.css";
 import logo from "../../files/crown.svg";
-//import UserName from "../../partials/username/index";
 import "./style.css";
-//import { decode } from "js-base64";
-
-//import { apiService } from "../../partials/csrf/api.service";
 
 class HeaderHome extends React.Component {
   constructor(props) {
