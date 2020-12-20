@@ -205,7 +205,11 @@ _Content Security Policy_ and _Permissions Policy_ protection was added to boost
 - [SECURE_BROWSER_XSS_FILTER](https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter)
 - [X_FRAME_OPTIONS](https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options)
 
-To secure the site admin interface, One-Time Password was implemented with [django-otp](https://django-otp-official.readthedocs.io/en/stable/) as well as updating the default admin url path. Web app scanned and graded A+ by [Mozilla Observatory](https://observatory.mozilla.org/) and [Security Headers](https://securityheaders.com/)
+To secure the site admin interface, One-Time Password was implemented with [django-otp](https://django-otp-official.readthedocs.io/en/stable/) as well as updating the default admin url path. Web app HTTP headers scanned and graded A+ by [Mozilla Observatory](https://observatory.mozilla.org/) and [Security Headers](https://securityheaders.com/). Production check was carried out by running `heroku run python manage.py check --deploy` with no system issue identified.
+
+
+### Database
+Database used on development was `psql (PostgreSQL) 12.4` and `Heroku Postgres Hobby Dev` on production.
 
 
 ### Styling
