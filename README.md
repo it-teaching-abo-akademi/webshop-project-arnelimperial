@@ -47,7 +47,7 @@ An E-commerce and CRUD web application project coded in __Python(Django)__ for c
 ### API Endpoints
 BASE URI: __https://nurtsrx.herokuapp.com/api/__<br />
 
-*/api/users/* (GET, POST, PATCH, PUT, DELETE)<br />
+__/api/users/__ (GET, POST, PATCH, PUT, DELETE)<br />
 Retrieve all users. Customizing Django's default `User` model using `AbstractUser`.<br />
 Environment variable: REACT_APP_ENDPOINT_AUTH_USERS<br />
 Permission: Admin user<br />
@@ -68,14 +68,14 @@ Django app name: *users*
 
 
 
-*/api/merchandises/?search=* (GET)<br />
+**/api/merchandises/?search=** (GET)<br />
 Search endpoint by title.<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_SEARCH<br />
 Permission: Read only<br />
 Django app name: *merchandises*
 
 
-*/api/merchandises/* (POST, PATCH)<br />
+**/api/merchandises/** (POST, PATCH)<br />
 Create and edit merchandise object.<br />
 Environment variable: REACT_APP_ENDPOINT_ITEM_DISPLAY<br /> 
 Permission: Authenticated user<br />
@@ -95,20 +95,20 @@ Django app name: *merchandises*
 - merchant_email
 
 
-*/api/merchandise-counts/* (GET)<br />
+**/api/merchandise-counts/** (GET)<br />
 Count all merchandise objects.<br />
 Environment variable: REACT_APP_ENDPOINT_PRODUCTS_COUNT<br />
 Permission: Admin user<br />
 Django app name: *merchandises*
 
 
-*/api/merchandise-owned/* (GET)<br />
+**/api/merchandise-owned/** (GET)<br />
 Merchandise objects created by user. Returns pk, title, price, description, price_dec, slug, product_image, created_date, updated_date, merchant.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_ITEMS<br />
 Permission: Authenticated user<br />
 Django app name: *merchandises*
 
-*/api/carts/* (POST)<br />
+**/api/carts/** (POST)<br />
 Add merchandise object to cart
 Environment variable: REACT_APP_ENDPOINT_CART<br /> 
 Permission: Authenticated user<br />
@@ -127,21 +127,21 @@ Django app name: *carts*
 - created
 
 
-*/api/customers-cart/* (GET, DELETE)<br />
+**/api/customers-cart/** (GET, DELETE)<br />
 Cart object created by user. Return id, item_name, customer, customer_email, merchant, item_price, item_price_dec, item_merchant_email, on_stock, created, item.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_CART<br /> 
 Permission: Authenticated user<br />
 Django app name: *carts*
 
 
-*/api/users-cart/* (DELETE)<br />
+**/api/users-cart/** (DELETE)<br />
 Delete all cart object by user.<br />
 Environment variable: REACT_APP_ENDPOINT_USER_CART_DELETE_ALL<br /> 
 Permission: Authenticated user<br />
 Django app name: *carts*
 
 
-*/api/purchases/* (POST)<br />
+**/api/purchases/** (POST)<br />
 Delete all cart object by user.<br />
 Environment variable: REACT_APP_ENDPOINT_PURCHASE<br /> 
 Permission: Authenticated user<br />
@@ -160,21 +160,21 @@ Django app name: *purchases*
 - created
 
 
-*/api/purchases-buyer/* (GET)<br />
+__/api/purchases-buyer/__ (GET)<br />
 Retrieve user's purchases as buyer.<br />
 Environment variable: REACT_APP_ENDPOINT_BUYER<br /> 
 Permission: Authenticated user<br />
 Django app name: *purchases*
 
 
-*/api/purchases-sellers/* (GET)<br />
+__/api/purchases-sellers/__ (GET)<br />
 Retrieve user's purchases objects as seller.<br />
 Environment variable: REACT_APP_ENDPOINT_SELLERS<br /> 
 Permission: Authenticated user<br />
 Django app name: *purchases*
 
 
-*/api/initial/* (POST)<br />
+__/api/initial/__ (POST)<br />
 Create default users and merchandise.<br />
 Environment variable: REACT_APP_ENDPOINT_INITIAL<br /> 
 Permission: Admin user<br />
